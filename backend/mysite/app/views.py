@@ -7,7 +7,7 @@ def home(request):
     return HttpResponse('<h3>Welcome to Custom Mockup API. Designed and developed by <a href="https://dewanshrawat.me/">Dewansh Rawat</a></h3>')
 
 def create_user(request, username):
-    x = user_Record.objects.values('username')
+    x = user_Record.objects.filter(username=username)
     print(x)
     if len(x) != 0:
         return HttpResponse('Username already exists, please choose another')

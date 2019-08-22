@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: 'Contact',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.green,
       ),
       home: MyHomePage(title: 'Contact'),
     );
@@ -36,14 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Map data = {
-    "name": "Dewansh Rawat",
-    "number": "+91-9968858476"
+    "name": "Phalguni Modi",
+    "number": "+91-7290982480"
   };
 
   postData(){
     var jsonData = json.encode(data);
     http.post("http://localhost:8000/dewanshrawat15/post/", body: jsonData).then((response){
       var t = response.body;
+      setState((){
+
+      });
     });
   }
 
@@ -90,6 +93,15 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => postData(),
               tooltip: 'Add Contact',
               child: const Icon(Icons.add),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: FloatingActionButton(
+              heroTag: 'image2',
+              onPressed: () {},
+              tooltip: 'Contact Dialog Box',
+              child: const Icon(Icons.favorite),
             ),
           ),
         ],
