@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<style type="text/css">
+	
+	.home{
+		background: #15171c;
+		width: 100vw;
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 24px;
+		font-family: "Product Sans";
+		height: 100vh;
+	}
+
+	.block{
+		position: absolute;
+		top: 50%;
+		padding: 48px;
+		left: 50%;
+		font-size: 24px;
+		font-family: "Product Sans";
+		transform: translate(-50%, -50%);
+		background: rgba(255, 255, 255, 0.95);
+	}
+
+	p{
+		color: #15171c;
+		font-size: 24px;
+		font-family: "Product Sans";
+	}
+
+</style>
+<div class="home">
+	<div class="block">
+		<center><img src="https://www.stickpng.com/assets/images/585e4beacb11b227491c3399.png" height="228" width="228"></center>
+		<br><br>
+		<center>
+			<p>Welcome {{ username }}</p>
+		</center>
+	</div>
+</div>
+{% endblock %}
