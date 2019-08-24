@@ -12,25 +12,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Contact'),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
 
   getData(){
     return http
-        .get('http://localhost:8000/dewanshrawat15/fetch/')
+        .get('https://mockupapi.herokuapp.com/dewanshrawat15/fetch/')
         .then((onValue) {
+      print(t);
       return json.decode(onValue.body);
     });
   }
@@ -42,11 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   postData(){
     var jsonData = json.encode(data);
-    http.post("http://localhost:8000/dewanshrawat15/post/", body: jsonData).then((response){
+    http.post("https://mockupapi.herokuapp.com/dewanshrawat15/post/", body: jsonData).then((response){
       var t = response.body;
-      setState((){
-
-      });
+      print(t);
     });
   }
 
@@ -54,34 +45,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Contacts"),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: StreamBuilder(
-            stream: getData().asStream(),
-            builder: (BuildContext context, AsyncSnapshot snapshot){
-              if (snapshot.hasData){
-                return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (BuildContext context, int index){
-                    return ListTile(
-                      title: Text(snapshot.data[index]["name"]),
-                      subtitle: Text(snapshot.data[index]["number"]),
-                    );
-                  },
-                );
-              }
-            },
-          ),
+      body: Center(
+        child: Text(
+          "Hello World",
         ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: () => setState((){}),
+            onPressed: () => getData(),
             heroTag: 'image0',
             tooltip: 'Refresh',
             child: const Icon(Icons.refresh),
@@ -93,15 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => postData(),
               tooltip: 'Add Contact',
               child: const Icon(Icons.add),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              heroTag: 'image2',
-              onPressed: () {},
-              tooltip: 'Contact Dialog Box',
-              child: const Icon(Icons.favorite),
             ),
           ),
         ],
