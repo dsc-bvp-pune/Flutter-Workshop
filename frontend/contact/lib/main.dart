@@ -36,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Map data = {
-    "name": "Phalguni Modi",
-    "number": "+91-7290982480"
+    "name": "",
+    "number": ""
   };
 
   postData(){
